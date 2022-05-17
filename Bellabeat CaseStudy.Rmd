@@ -1,0 +1,64 @@
+---
+title: Bellabeat Case Study
+output: html_notebook
+---
+##Introduction
+Bellabeat is a thiriving high-tech manufacturer of health-focused products for women. Co-founder and Chief Creative Officer Urška Sršen is interested in analyzing smart device data to gain insight into how customers are using their smart devices. She would like to use this insight to help guide Bellabeat's marketing strategy as they become an important player in the global smart device market.
+
+1. ASK
+
+Business Task: Bellabeat would like to become a large player in the global smart device market. Analyze Fitbit user data to help guide marketing strategy. 
+
+Key Players: Urška Sršen and Bellabeat Marketing Team
+
+2. PREPARE
+
+Data Source: https://www.kaggle.com/arashnic/fitbit
+
+Thirty Fitbit users participated in a survey from March 2016 to May 2016 through Amazon Mechanical Turk. The data does follow ROCCC, but has limitation due to the small sample size of 30 users and how the data was collected. 
+
+3. PROCESS:
+ 
+-1 Uploaded 4 of the 18 available CSV files,  dailyActivity_merged.csv, dailyIntensities_merged.csv, sleepSteps_merged.csv, and dailyCalories_merged.csv. Changed names to daily_activies, daily_intensities, and daily_steps and daily_calories. The date formate was also updated for all datasets.
+ 
+ 
+-2 Checked daily_activity, daily_steps, daily_calories, and daily_intensities for duplicates, NA/NULL and proper naming conventions.  
+```{r}
+sum(is.na(daily_activity))
+sum(duplicated(daily_activity))
+head(daily_activity)
+```
+```{r}
+sum(is.na(daily_intensities))
+sum(duplicated(daily_intensities))
+head(daily_intensities)
+```
+```{r}
+sum(is.na(daily_calories))
+sum(duplicated(daily_calories))
+head(daily_calories)
+```
+```{r}
+sum(is.na(daily_steps))
+sum(duplicated(daily_steps))
+head(daily_steps)
+```
+##4.Analyze
+
+Minutes of Activity by Intensity(Average)
+```{r}
+daily_intensities%>%
+  select(SedentaryMinutes,FairlyActiveMinutes,VeryActiveMinutes,LightlyActiveMinutes)%>%
+  summary()
+```
+```{r}
+calories_steps <- merge(daily_calories, daily_steps, by=c ("Id", "ActivityDay"))
+head(calories_steps)
+```
+
+```{r}
+calories_steps_intensity<- merge(calories_steps, daily_intensities, by=c ("Id","ActivityDay"))
+head(calories_steps_intensity)
+```
+
+
