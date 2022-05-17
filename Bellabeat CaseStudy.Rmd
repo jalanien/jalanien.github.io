@@ -18,11 +18,8 @@ Data Source: https://www.kaggle.com/arashnic/fitbit
 Thirty Fitbit users participated in a survey from March 2016 to May 2016 through Amazon Mechanical Turk. The data does follow ROCCC, but has limitation due to the small sample size of 30 users and how the data was collected. 
 
 3. PROCESS:
- 
--1 Uploaded 4 of the 18 available CSV files,  dailyActivity_merged.csv, dailyIntensities_merged.csv, sleepSteps_merged.csv, and dailyCalories_merged.csv. Changed names to daily_activies, daily_intensities, and daily_steps and daily_calories. The date formate was also updated for all datasets.
- 
- 
--2 Checked daily_activity, daily_steps, daily_calories, and daily_intensities for duplicates, NA/NULL and proper naming conventions.  
+ -Uploaded 4 of the 18 available CSV files,  dailyActivity_merged.csv, dailyIntensities_merged.csv, dailySteps_merged.csv, and dailyCalories_merged.csv. Changed names to daily_activies, daily_intensities, and daily_steps and daily_calories. The date formate was also updated for all datasets.
+ - Checked daily_activity, daily_steps, daily_calories, and daily_intensities for duplicates, NA/NULL and proper naming conventions.  
 ```{r}
 sum(is.na(daily_activity))
 sum(duplicated(daily_activity))
